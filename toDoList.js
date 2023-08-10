@@ -1,4 +1,4 @@
-let inputs = document.getElementById("inp");
+let inputs = document.getElementById("input");
 let text = document.querySelector(".text");
 
 function Add(){
