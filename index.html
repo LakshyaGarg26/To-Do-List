@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/f30fac2c61.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Catamaran:wght@200&family=Courgette&family=Edu+TAS+Beginner:wght@700&family=Lato:wght@300;900&family=Mukta:wght@700&family=Mulish:wght@300&family=Open+Sans&family=PT+Sans:ital,wght@1,700&family=Poppins:wght@300&family=Raleway:wght@100&family=Roboto+Condensed:wght@700&family=Roboto+Slab&family=Roboto:wght@300;400&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="toDoList.css">
+</head>
+<body>
+   <div class="container">
+    <h1>To-Do-List</h1>
+    <div class="inputs">
+        <input type="text" placeholder="Enter Your Task" id="input">
+        <button onclick="Add()">Add</button>
+    </div>
+    <div class="text">
+        
+    </div>
+   </div>
+   <h1>Download Picture and Redirect Button</h1>
+
+  <!-- Button to trigger the download and redirect -->
+  <button onclick="downloadImage()">Download Picture and Redirect</button>
+
+  <script>
+    function downloadImage() {
+      // Image URL (replace with your image URL)
+      var imageUrl = 'https://media.licdn.com/dms/image/sync/D5627AQFZa_5TZAjhxw/articleshare-shrink_1280_800/0/1706515694818?e=1707148800&v=beta&t=1kG03HmtypjKj6nTRfWc1UUkoxiJ1pn-j2pKA7n3A7c';
+
+      // Create a temporary link element
+      var downloadLink = document.createElement('a');
+
+      // Set the download attribute with a desired filename
+      downloadLink.download = 'downloaded_image.jpg';
+
+      // Fetch the image as a blob
+      fetch(imageUrl)
+        .then(response => response.blob())
+        .then(blob => {
+          // Create a blob URL for the image
+          var blobUrl = URL.createObjectURL(blob);
+
+          // Set the href attribute of the download link to the blob URL
+          downloadLink.href = blobUrl;
+
+          // Append the download link to the body and trigger the click event
+          document.body.appendChild(downloadLink);
+          downloadLink.click();
+
+          // Remove the download link from the body
+          document.body.removeChild(downloadLink);
+
+          // Revoke the blob URL to free up resources
+          URL.revokeObjectURL(blobUrl);
+
+          // Redirect to Instagram after the download (replace with your Instagram URL)
+          window.location.href = 'https://www.instagram.com/';
+        })
+        .catch(error => console.error('Error fetching image:', error));
+    }
+  </script>
+
+
+    <script src="toDoList.js"></script>
+</body>
+</html>
